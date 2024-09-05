@@ -27,6 +27,22 @@ def _parse_arguments(desc, args):
                                      formatter_class=constants.ArgParseFormatter)
     parser.add_argument('outdir',
                         help='Directory to write results to')
+    parser.add_argument('--seqms',
+                        help='Path to SEQ-MS fractions TSV file')
+    parser.add_argument('--corum', default='https://mips.helmholtz-muenchen.de/corum/#download',
+                        help='Path to CORUM complexes file/zip file or url to download from CORUM')
+    parser.add_argument('--docker', default='docker',
+                        help='Path to Docker command, needed if running EPIC via Docker')
+    parser.add_argument('--apptainer', default='apptainer',
+                        help='Path to Apptainer command, needed if running EPIC via Apptainer')
+    parser.add_argument('--conda', default='conda',
+                        help='Path to conda command, needed if running EPIC via Anaconda')
+    parser.add_argument('--conda_env', default='baderlab_epic',
+                        help='Name of Anaconda environment where EPIC is installed and can be run')
+    parser.add_argument('--num_cores', default=1, type=int,
+                        help='Number of cores EPIC can use to run')
+    parser.add_argument('--runmode', choices=['apptainer', 'docker', 'conda'],
+                        help='Specifies where to run EPIC under')
     parser.add_argument('--logconf', default=None,
                         help='Path to python logging configuration file in '
                              'this format: https://docs.python.org/3/library/'
@@ -71,7 +87,8 @@ def main(args):
     desc = """
     Version {version}
 
-    Invokes run() method on CellMapsPPIFromSEQMS
+    Generates Protein-Protein interaction edgelist from SEQ-MS fractions TSV file
+    using EPIC algorithm from the Baderlab
 
     """.format(version=cellmaps_seqms_ppi_gen.__version__)
     theargs = _parse_arguments(desc, args[1:])

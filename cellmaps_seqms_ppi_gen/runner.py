@@ -74,6 +74,16 @@ class CellMapsPPIFromSEQMS(object):
                                            data={'commandlineargs': self._input_data_dict},
                                            version=cellmaps_seqms_ppi_gen.__version__)
 
+            # TODO: 1) Load SEQ-MS, do clean up noted in UD-2899 and register with FAIRSCAPE
+            #       2) Create SEQ-MS input file needed by EPIC (register with FAIRSCAPE too)
+            #       3) Obtain CORUM complexes and structure correctly for EPIC (register with FAIRSCAPE)
+            #       4) Setup EPIC output folders
+            #       5) Run EPIC
+            #       6) Extract output and store in generalized TSV file with
+            #          SOURCE TARGET SOURCE_UNIPROT SOURCE_ENSEMBL, SOURCE_GENE_SYMBOL, TARGET (same) and SCORE
+            #          (register with fairscape)
+
+
             # set exit code to value passed in via constructor
             exitcode = self._exitcode
         finally:

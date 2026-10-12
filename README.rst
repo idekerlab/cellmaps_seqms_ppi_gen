@@ -44,6 +44,7 @@ Installation
 
    git clone https://github.com/idekerlab/cellmaps_seqms_ppi_gen
    cd cellmaps_seqms_ppi_gen
+   pip install -r requirements_dev.txt
    make dist
    pip install dist/cellmaps_seqms_ppi_gen*whl
 
